@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Ж / Positronic — Distributed Private Cloud</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="brandline">
+        <div class="mark" aria-hidden="true">Ж</div>
+        <div>
+          <div class="eyebrow">PARALLAX / POSITRONIC</div>
+          <div class="brandtitle">Your private computing universe.</div>
+        </div>
+      </div>
+      <div class="headstatus">
+        <span class="chip">ALPHA 0.1</span>
+        <span id="connection" class="connection status-loading" role="status"><span class="light"></span>Connecting</span>
+      </div>
+    </header>
+
+    <section class="hero" aria-label="Resource map introduction">
+      <div class="eyebrow hero-eyebrow">DISTRIBUTED PRIVATE CLOUD</div>
+      <h1>The cloud starts <em>here.</em></h1>
+      <p>See the resources you already own. Trusted peers and distributed workloads are the next step.</p>
+    </section>
+
+    <div id="error" class="error" hidden role="alert"></div>
+
+    <section class="stat-grid" aria-label="Local resource summary">
+      <article class="stat">
+        <div class="stat-label">CPU LOAD</div>
+        <div class="stat-value"><span id="cpu-value">—</span><small id="cpu-unit">%</small></div>
+        <div class="bar"><div id="cpu-bar" class="bar-fill"></div></div>
+        <div id="cpu-hint" class="stat-hint">Sampling CPU activity…</div>
+      </article>
+      <article class="stat">
+        <div class="stat-label">MEMORY USED</div>
+        <div class="stat-value"><span id="ram-value">—</span><small>%</small></div>
+        <div class="bar"><div id="ram-bar" class="bar-fill"></div></div>
+        <div id="ram-hint" class="stat-hint">Waiting for telemetry…</div>
+      </article>
+      <article class="stat">
+        <div class="stat-label">ROOT STORAGE USED</div>
+        <div class="stat-value"><span id="disk-value">—</span><small>%</small></div>
+        <div class="bar"><div id="disk-bar" class="bar-fill amber"></div></div>
+        <div id="disk-hint" class="stat-hint">Waiting for telemetry…</div>
+      </article>
+      <article class="stat feature">
+        <div class="stat-label">TRUSTED PEERS</div>
+        <div id="peers-value" class="stat-value">0</div>
+        <div class="stat-hint">Local-only prototype</div>
+        <div class="feature-foot">Federation: planned</div>
+      </article>
+    </section>
+
+    <section class="workgrid" aria-label="Fabric map and node details">
+      <article class="panel topology">
+        <div class="panel-title-row">
+          <div><div class="eyebrow">FABRIC VIEW</div><h2>Resource map</h2></div>
+          <span class="chip active"><span class="mini-dot"></span> Private</span>
+        </div>
+        <div class="map-canvas" role="img" aria-label="One real local computer at the center; dashed outlines mark future trusted peers, which are not connected yet.">
+          <div class="map-grid"></div>
+          <svg class="map-lines" viewBox="0 0 640 330" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <circle cx="320" cy="167" r="104" fill="none" stroke="#26404a" stroke-dasharray="3 7" />
+            <circle cx="320" cy="167" r="159" fill="none" stroke="#20323d" stroke-dasharray="2 10" />
+            <path d="M320 167 L105 65 M320 167 L520 72 M320 167 L525 263" stroke="#39535a" stroke-width="1.5" stroke-dasharray="5 8" fill="none" />
+            <circle cx="320" cy="167" r="44" fill="#00ddaa" opacity="0.065" />
+            <circle cx="320" cy="167" r="26" fill="#00ddaa" opacity="0.12" stroke="#32d7ab" stroke-width="1.5" />
+            <circle cx="320" cy="167" r="5" fill="#72ffce" />
+            <circle cx="105" cy="65" r="17" fill="#101d25" stroke="#455a64" stroke-dasharray="3 5" />
+            <circle cx="520" cy="72" r="17" fill="#101d25" stroke="#455a64" stroke-dasharray="3 5" />
+            <circle cx="525" cy="263" r="17" fill="#101d25" stroke="#455a64" stroke-dasharray="3 5" />
+            <g fill="#657e8c" font-family="system-ui" font-size="12" text-anchor="middle">
+              <text x="105" y="99">not connected</text>
+              <text x="520" y="106">not connected</text>
+              <text x="525" y="297">not connected</text>
+            </g>
+            <text x="320" y="214" fill="#d1f7e9" font-size="13" font-family="system-ui" font-weight="600" text-anchor="middle">LOCAL NODE</text>
+          </svg>
+          <div class="node-name" id="map-hostname">Detecting node…</div>
+        </div>
+        <div class="legend">
+          <span><i class="legend-dot local"></i>Owned machine</span>
+          <span><i class="legend-dot future"></i>Future peer slot</span>
+          <span>Live telemetry · 2-second refresh</span>
+        </div>
+      </article>
+
+      <article class="panel details">
+        <div class="panel-title-row">
+          <div><div class="eyebrow">NODE INSPECTOR</div><h2 id="host-title">Local machine</h2></div>
+          <span class="chip active">Owned</span>
+        </div>
+        <dl class="facts">
+          <div><dt>Operating system</dt><dd id="os">—</dd></div>
+          <div><dt>Logical CPU cores</dt><dd id="cores">—</dd></div>
+          <div><dt>1-minute load average</dt><dd id="load">—</dd></div>
+          <div><dt>Available memory</dt><dd id="ram-free">—</dd></div>
+          <div><dt>Uptime</dt><dd id="uptime">—</dd></div>
+          <div><dt>GPU discovery</dt><dd id="gpu-status">Not implemented</dd></div>
+          <div><dt>Network interfaces</dt><dd id="interfaces">—</dd></div>
+        </dl>
+        <p class="details-note">Data remains on this machine. This alpha does not enroll peers, expose jobs, or accept remote commands.</p>
+      </article>
+    </section>
+
+    <section class="panel terminal" aria-label="Bash shell instructions">
+      <div class="panel-title-row">
+        <div><div class="eyebrow">SHELL / COMPATIBILITY</div><h2>Bash today. ZhQL tomorrow.</h2></div>
+        <span class="chip">Browser PTY: planned</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="prompt">$</span> <code>zh --headless</code> <span class="term-comment"># Persistent Bash session</span></div>
+        <div><span class="prompt">$</span> <code>zh --resources</code> <span class="term-comment"># Live resource JSON</span></div>
+        <div><span class="prompt">$</span> <code>zh build.sh</code> <span class="term-comment"># Existing Bash script</span></div>
+      </div>
+      <div class="terminal-foot">
+        <span>Type commands in the terminal that launched zh. In-browser terminal control is not wired yet.</span>
+        <button id="copy-json" class="copy" type="button">Copy resource JSON</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>PARALLAX <strong>Ж</strong> · Your hardware. Your network. Your cloud.</span>
+      <span id="refresh-time">Waiting for first sample</span>
+    </footer>
+  </div>
+</body>
+</html>

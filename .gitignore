@@ -1,0 +1,12 @@
+/target/
+**/target/
+**/.DS_Store
+*.swp
+*.swo
+.env
+.env.*
+!.env.example
+apps/resource-map/node_modules/
+apps/resource-map/dist/
+services/positronic/positronic
+.coverage
